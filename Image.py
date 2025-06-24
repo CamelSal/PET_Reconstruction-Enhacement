@@ -1,6 +1,8 @@
+from scipy.signal import square
 from skimage.transform import iradon_sart
 import numpy as np
 import matplotlib.pyplot as plt
+
 
 def loadfile(fname,col): #load the imformation of the given colum of the textfile as np a numpy array
     return np.loadtxt(fname, usecols=(col,))
@@ -9,17 +11,16 @@ t = 361
 theta = np.arange(0,t,18)
 
 for i in theta: #loads each file for the representing angel
-    x= loadfile("Scan4_"+str(i)+"Deg.txt",1)
-    print(x)
+    x= loadfile("Data/Scan4_"+str(i)+"Deg.txt",1)
     data1.append(x)
 
 sinogram= np.column_stack(data1) # rearranges the data to form a projection sinogram obataned fro the files
 
 
-y= loadfile("Scan4_0Deg.txt",0) + 10
+y= loadfile("Data/Scan4_0Deg.txt",0) + 10
 reconstruction = iradon_sart(sinogram, theta=theta,relaxation=0.15) # reconstructed the image obatianed from the sinogram 
 # variable to generated the indidual curves of coicidence signal 
-errodata = data**(1/2) # error of each measurement which is proportional to the sqaureroot of the count
+errodata = np.sqrt(data1) # error of each measurement which is proportional to the sqaureroot of the count
 p = [0,1,2,3,4,5,6,7]
 color = ['b', 'g', 'r', 'c', 'm', 'y', 'k','silver','navy','chocolate','lime']
 
@@ -41,8 +42,9 @@ ax2.set_xticks([])
 ax2.set_yticks([])
 ax2.set_title("Reconstruction",fontsize=15)
 #plots of the projection of location vs count at specific angels whit their errors 
+
 for i in p:
-    ax3.errorbar(y,data[:, i],color = color[i],yerr=errodata[:, i])
+    ax3.errorbar(y,data1[i],color = color[i],yerr=errodata[i])
 ax3.legend(theta[(p)],ncol=2)
 ax3.set_xlabel('Projection Axis (mm)')
 ax3.set_ylabel('Intensity (counts)')
