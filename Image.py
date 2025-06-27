@@ -1,5 +1,5 @@
 from scipy.signal import square
-from skimage.transform import iradon_sart
+from skimage.transform import iradon
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -14,12 +14,12 @@ for i in theta: #loads each file for the representing angel
     x= loadfile("Data/Scan4_"+str(i)+"Deg.txt",1)
     data1.append(x)
 
-sinogram= np.column_stack(data1) # rearranges the data to form a projection sinogram obataned fro the files
+sinogram= np.column_stack(data1) # rearranges the data to form a projection sinogram obataned from the files
 
 
 y= loadfile("Data/Scan4_0Deg.txt",0) + 10
-reconstruction = iradon_sart(sinogram, theta=theta,relaxation=0.15) # reconstructed the image obatianed from the sinogram 
-# variable to generated the indidual curves of coicidence signal 
+reconstruction = iradon(sinogram, theta=theta) # reconstructed the image obatianed from the sinogram
+# variable to generate the individual curves of coicidence signal
 errodata = np.sqrt(data1) # error of each measurement which is proportional to the sqaureroot of the count
 p = [0,1,2,3,4,5,6,7]
 color = ['b', 'g', 'r', 'c', 'm', 'y', 'k','silver','navy','chocolate','lime']
