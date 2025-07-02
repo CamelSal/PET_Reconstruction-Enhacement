@@ -63,9 +63,17 @@ for i in range(0,21):
     prm.append(popt)
 
 # Plot fit optional
-n= 5
-plt.plot(x0,data0[:,n],'o')
-plt.plot(t,sim1[n],'orange',linewidth=2)
+
+plt.plot(x0,data0[:,1],'o')
+plt.plot(t,sim1[1],'orange',linewidth=2)
+plt.xlabel('Projection Axis (mm)')
+plt.ylabel('Intensity (counts)')
+plt.title("Cauchy Double Peak Curve Fit")
+plt.legend(['Data Point','Cauchy Curve Fit'])
+plt.show()
+
+plt.plot(x0,data0[:,5],'o')
+plt.plot(t,sim1[5],'orange',linewidth=2)
 plt.xlabel('Projection Axis (mm)')
 plt.ylabel('Intensity (counts)')
 plt.title("Cauchy Double Peak Curve Fit")
@@ -169,22 +177,22 @@ plt.show()
 
 # Display reconstructed images
 
-fig2 = plt.figure(figsize=(30, 7))
+fig2 = plt.figure(figsize=(25, 14))
 ax2 = plt.subplot2grid((2, 6),(0,0),colspan=2, rowspan=2)
 ax3 = plt.subplot2grid((2, 6),(0,2),colspan=2, rowspan=2)
 ax1 = plt.subplot2grid((2, 6),(0,4),colspan=2, rowspan=2)
 
 ax1.imshow(reconstruction1,aspect='auto',cmap="gray")
-ax1.set_title('Simulated Position')
+ax1.set_title('Simulated Position',fontsize=2)
 ax1.set_xticks([])
 ax1.set_yticks([])
 ax2.imshow(reconstruction2,aspect='auto',cmap="gray")
 ax2.set_xticks([])
 ax2.set_yticks([])
-ax2.set_title('Original Image')
+ax2.set_title('Original Image',fontsize=20)
 ax3.imshow(reconstruction3,aspect='auto',cmap="gray")
 ax3.set_xticks([])
 ax3.set_yticks([])
 ax3.set_title('Curve Fit Enhacement')
-plt.savefig('figures/enhance.png')
+plt.savefig('figures/enhance.png',fontsize=20)
 plt.show()

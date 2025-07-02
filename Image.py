@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def loadfile(fname,col): #load the imformation of the given colum of the textfile as np a numpy array
+def loadfile(fname,col): #load the information of the given colum of the textfile as np a numpy array
     return np.loadtxt(fname, usecols=(col,))
 data1 = [] #blank list to append each measurement for each column
 t = 361
@@ -14,13 +14,13 @@ for i in theta: #loads each file for the representing angel
     x= loadfile("Data/Scan4_"+str(i)+"Deg.txt",1)
     data1.append(x)
 
-sinogram= np.column_stack(data1) # rearranges the data to form a projection sinogram obataned from the files
+sinogram= np.column_stack(data1) # rearranges the data to form a projection sinogram obtained from the files
 
 
 y= loadfile("Data/Scan4_0Deg.txt",0) + 10
-reconstruction = iradon(sinogram, theta=theta) # reconstructed the image obatianed from the sinogram
-# variable to generate the individual curves of coicidence signal
-errodata = np.sqrt(data1) # error of each measurement which is proportional to the sqaureroot of the count
+reconstruction = iradon(sinogram, theta=theta) # reconstructed the image obtained from the sinogram
+# variable to generate the individual curves of coincidence signal
+errodata = np.sqrt(data1) # error of each measurement which is proportional to the square root of the count
 p = [0,1,2,3,4,5,6,7]
 color = ['b', 'g', 'r', 'c', 'm', 'y', 'k','silver','navy','chocolate','lime']
 
@@ -36,12 +36,12 @@ ax1.imshow(sinogram, cmap='gray',extent=[0,t-1,-10,10],aspect='auto',interpolati
 ax1.set_ylabel('Projection Axis (mm)')
 ax1.set_title("Projection Sinogram")
 ax1.set_xlabel("Projection Angles (deg)")
-# the recorstucted projection of the image done via an inversed radon trasformation
+# the reconstructed projection of the image done via an inverse radon transformation
 ax2.imshow(reconstruction, cmap='gray',aspect='auto')
 ax2.set_xticks([])
 ax2.set_yticks([])
 ax2.set_title("Reconstruction",fontsize=15)
-#plots of the projection of location vs count at specific angels whit their errors 
+#plots of the projection of location vs count at specific angels with their errors
 
 for i in p:
     ax3.errorbar(y,data1[i],color = color[i],yerr=errodata[i])
