@@ -45,6 +45,7 @@ This fitting improves image quality when the projections are reassembled into a 
 $$
 f(x) = \frac{a}{\pi  \gamma (1+(\frac{x - x_{01}}{ \gamma })^2)} + \frac{a}{\pi  \gamma (1+(\frac{x - x_{02}}{ \gamma})^2)} + y_{\text{off}}
 $$
+
 ![alt text](https://github.com/CamelSal/PET_Reconstruction-Enhacement/blob/master/figures/original.png?raw=true)
 ### 3. Parameter Analysis and Interpolation
 
