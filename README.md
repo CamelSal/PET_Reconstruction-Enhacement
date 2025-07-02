@@ -45,7 +45,7 @@ This fitting improves image quality when the projections are reassembled into a 
 $$
 f(x) = \frac{a}{\pi  \gamma (1+(\frac{x - x_{01}}{ \gamma })^2)} + \frac{a}{\pi  \gamma (1+(\frac{x - x_{02}}{ \gamma})^2)} + y_{\text{off}}
 $$
-![alt text](https://github.com/CamelSal/PET_Reconstruction-Ennhacement/blob/master/figures/original.png?raw=true)
+![alt text](https://github.com/CamelSal/PET_Reconstruction-Enhacement/blob/master/figures/original.png?raw=true)
 ### 3. Parameter Analysis and Interpolation
 
 Each projection’s fit returned a set of parameters (peak positions, width, amplitude, and offset). These parameters were analyzed as a function of projection angle:
@@ -56,13 +56,13 @@ Each projection’s fit returned a set of parameters (peak positions, width, amp
 
 This allowed the simulation of smooth, continuous projection curves across angles that were not originally measured, effectively increasing angular resolution without additional data collection.
 
-![alt text](https://github.com/CamelSal/PET_Reconstruction-Ennhacement/blob/master/figures/parameter_interpolation.png?raw=true)
+![alt text](https://github.com/CamelSal/PET_Reconstruction-Enhacement/blob/master/figures/parameter_interpolation.png?raw=true)
 
 ### 4. Generating Enhanced Projections and Final Image
 
 Using the fitted functions and interpolated parameters, new projections were synthesized for finely spaced angles. These were used to create a high-resolution simulated sinogram, which was then reconstructed using the Inverse Radon Transform to generate a final, noise-reduced image.
 
-![alt text](https://github.com/CamelSal/PET_Reconstruction-Ennhacement/blob/master/figures/enhance.png?raw=true)
+![alt text](https://github.com/CamelSal/PET_Reconstruction-Enhacement/blob/master/figures/enhance.png?raw=true)
 
 ## Conclusion
 
