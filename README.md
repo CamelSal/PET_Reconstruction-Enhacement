@@ -1,4 +1,4 @@
-# PET-Reconstruction-Ennhacement
+# PET-Reconstruction-Enhacement
 
 This repository contains a project focused on enhancing **Positron Emission Tomography (PET)** image reconstruction using Python-based techniques, including curve fitting and image interpolation. The goal is to reduce background noise and improve image resolution in reconstructed PET scans.
 
@@ -30,6 +30,8 @@ The radioactive objects were placed on a movable rail system positioned between 
 ### 1. Converting Projection Data into a Sinogram
 
 Data collected from multiple angles was first arranged into a sinogram, which plots intensity (coincidence counts) as a function of position across various angles. This sinogram is the basis for reconstruction using the Inverse Radon Transform, which generates an initial image representing the distribution of radioactivity in the scanned object.
+
+![alt text](https://github.com/CamelSal/PET_Reconstruction-Enhacement/blob/master/figures/cauchy_distribution.png?raw=true)
 
 ### 2. Curve Fitting with a Two-Peak Cauchy Distribution
 To reduce noise and enhance resolution, each 1D projection was curve-fitted using a two-peak Cauchy distribution. This function was selected because:
