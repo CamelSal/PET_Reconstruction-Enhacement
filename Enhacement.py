@@ -63,21 +63,27 @@ for i in range(0,21):
     prm.append(popt)
 
 # Plot fit optional
+fig_1 = plt.figure(figsize=(15, 6))  # Taller figure for stacked layout
+ax1 = plt.subplot2grid((1, 2), (0, 0))
+ax2 = plt.subplot2grid((1, 2), (0, 1))
 
-plt.plot(x0,data0[:,1],'o')
-plt.plot(t,sim1[1],'orange',linewidth=2)
-plt.xlabel('Projection Axis (mm)')
-plt.ylabel('Intensity (counts)')
-plt.title("Cauchy Double Peak Curve Fit")
-plt.legend(['Data Point','Cauchy Curve Fit'])
-plt.show()
+ax1.plot(x0,data0[:,1],'o')
+ax1.plot(t,sim1[1],'orange',linewidth=2)
+ax1.set_xlabel('Projection Axis (mm)')
+ax1.set_ylabel('Intensity (counts)')
+ax1.set_title("Cauchy Double Peak Curve Fit 18°")
+ax1.legend(['Data Point','Cauchy Curve Fit'])
 
-plt.plot(x0,data0[:,5],'o')
-plt.plot(t,sim1[5],'orange',linewidth=2)
-plt.xlabel('Projection Axis (mm)')
-plt.ylabel('Intensity (counts)')
-plt.title("Cauchy Double Peak Curve Fit")
-plt.legend(['Data Point','Cauchy Curve Fit'])
+
+ax2.plot(x0,data0[:,5],'o')
+ax2.plot(t,sim1[5],'orange',linewidth=2)
+ax2.set_xlabel('Projection Axis (mm)')
+ax2.set_ylabel('Intensity (counts)')
+ax2.set_title("Cauchy Double Peak Curve Fit 90°")
+ax2.legend(['Data Point','Cauchy Curve Fit'])
+plt.tight_layout()
+plt.savefig('figures/cauchy_distribution.png')  # Optional: save the figure
+
 plt.show()
 
 #  Organize peak position arrays for interpolation
@@ -109,7 +115,7 @@ fa = interp1d(theta,a,kind='cubic')
 fs = interp1d(theta,sd,kind='cubic')
 
 
-# Plot Parameters interpolations
+# Plot Parameters for interpolations
 fig_interp = plt.figure(figsize=(10, 14))  # Taller figure for stacked layout
 
 # First plot: Sigma (width) interpolation
@@ -183,16 +189,17 @@ ax3 = plt.subplot2grid((2, 6),(0,2),colspan=2, rowspan=2)
 ax1 = plt.subplot2grid((2, 6),(0,4),colspan=2, rowspan=2)
 
 ax1.imshow(reconstruction1,aspect='auto',cmap="gray")
-ax1.set_title('Simulated Position',fontsize=2)
+ax1.set_title('Simulated Position',fontsize = 22)
 ax1.set_xticks([])
 ax1.set_yticks([])
 ax2.imshow(reconstruction2,aspect='auto',cmap="gray")
 ax2.set_xticks([])
 ax2.set_yticks([])
-ax2.set_title('Original Image',fontsize=20)
+ax2.set_title('Original Image',fontsize = 22)
 ax3.imshow(reconstruction3,aspect='auto',cmap="gray")
 ax3.set_xticks([])
 ax3.set_yticks([])
-ax3.set_title('Curve Fit Enhacement')
-plt.savefig('figures/enhance.png',fontsize=20)
+ax3.set_title('Curve Fit Enhacement',fontsize = 22)
+plt.tight_layout()
+plt.savefig('figures/enhance.png')
 plt.show()
